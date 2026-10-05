@@ -7,7 +7,7 @@ class BatchGenerator:
     self.images = images
     self.labels = labels
     self.batch_size = batch_size
-    self.num_batches = math.cell(len(images) / batch_size)
+    self.num_batches = math.ceil(len(images) / batch_size)
 
   def next(self):
     images = self.images[self.index : self.index + self.batch_size]
