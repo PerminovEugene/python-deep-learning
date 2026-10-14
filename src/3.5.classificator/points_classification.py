@@ -2,6 +2,7 @@ import numpy as np
 import tensorflow as tf
 import matplotlib.pyplot as plt
 
+# create 2 groups
 num_samples_per_class = 1000
 negative_samples = np.random.multivariate_normal(
   mean=[0, 3],
@@ -14,18 +15,16 @@ positive_samples = np.random.multivariate_normal(
   size=num_samples_per_class
 )
 inputs = np.vstack((negative_samples, positive_samples)).astype(np.float32)
-
 targets =np.vstack((np.zeros((num_samples_per_class, 1), dtype="float32"),
                     np.ones((num_samples_per_class, 1), dtype="float32")))
 
-
+# print points
 plt.scatter(inputs[:, 0], inputs[:, 1], c=targets[:, 0])
 plt.show()
 
-
+# classification
 input_dim = 2
 output_dim = 1
-
 
 W = tf.Variable(initial_value=tf.random.uniform(shape=(input_dim, output_dim)))
 b = tf.Variable(initial_value=tf.zeros(shape=(output_dim,)))
