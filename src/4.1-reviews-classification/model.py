@@ -16,6 +16,8 @@ import numpy as np
 
 def vectorize_sequences(sequences, dimension = 10000):
   results = np.zeros((len(sequences), dimension))
+  # words order is lost on this step, 
+  # but unexpectedly it doesnt matter for classification
   for i, sequence in enumerate(sequences):
     for j in sequence:
       results[i, j] = 1.
@@ -33,8 +35,8 @@ from tensorflow import keras
 from tensorflow.keras import layers
 
 model = keras.Sequential([
-  layers.Dense(16, activation="relu"),
-  layers.Dense(16, activation="relu"),
+  layers.Dense(128, activation="relu"),
+  # layers.Dense(16, activation="relu"),
   layers.Dense(1, activation="sigmoid")
 ])
 
